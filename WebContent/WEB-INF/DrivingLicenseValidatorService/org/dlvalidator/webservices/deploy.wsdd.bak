@@ -1,0 +1,30 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from DrivingLicenseValidatorService WSDL service -->
+
+  <service name="DrivingLicenseValidator" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://webservices.dlvalidator.org"/>
+      <parameter name="wsdlServiceElement" value="DrivingLicenseValidatorService"/>
+      <parameter name="schemaQualified" value="http://webservices.dlvalidator.org"/>
+      <parameter name="wsdlServicePort" value="DrivingLicenseValidator"/>
+      <parameter name="className" value="org.dlvalidator.webservices.DrivingLicenseValidatorSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="DrivingLicenseValidator"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="validateDrivingLicense" qname="operNS:validateDrivingLicense" xmlns:operNS="http://webservices.dlvalidator.org" returnQName="retNS:validateDrivingLicenseReturn" xmlns:retNS="http://webservices.dlvalidator.org" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:drivingLicense" xmlns:pns="http://webservices.dlvalidator.org" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:userApikey" xmlns:pns="http://webservices.dlvalidator.org" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="validateDrivingLicense"/>
+
+  </service>
+</deployment>

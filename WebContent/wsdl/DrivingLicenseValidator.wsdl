@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservices.dlvalidator.org" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservices.dlvalidator.org" xmlns:intf="http://webservices.dlvalidator.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://webservices.dlvalidator.org" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="validateDrivingLicense">
+    <complexType>
+     <sequence>
+      <element name="drivingLicense" type="xsd:string"/>
+      <element name="userApikey" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validateDrivingLicenseResponse">
+    <complexType>
+     <sequence>
+      <element name="validateDrivingLicenseReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="validateDrivingLicenseRequest">
+
+      <wsdl:part element="impl:validateDrivingLicense" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validateDrivingLicenseResponse">
+
+      <wsdl:part element="impl:validateDrivingLicenseResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="DrivingLicenseValidator">
+
+      <wsdl:operation name="validateDrivingLicense">
+
+         <wsdl:input message="impl:validateDrivingLicenseRequest" name="validateDrivingLicenseRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:validateDrivingLicenseResponse" name="validateDrivingLicenseResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="DrivingLicenseValidatorSoapBinding" type="impl:DrivingLicenseValidator">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="validateDrivingLicense">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validateDrivingLicenseRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validateDrivingLicenseResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="DrivingLicenseValidatorService">
+
+      <wsdl:port binding="impl:DrivingLicenseValidatorSoapBinding" name="DrivingLicenseValidator">
+
+         <wsdlsoap:address location="http://localhost:8081/DLValidator/services/DrivingLicenseValidator"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
